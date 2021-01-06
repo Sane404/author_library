@@ -98,7 +98,6 @@ export class EditAuthorComponent implements OnInit {
     this.router.navigate(['details', newRoute]));
     this.eventTrigger(form);
     console.log('TRIGGERED');
-    
   }
   onChildClickFunction(e){
     e.stopPropagation();
