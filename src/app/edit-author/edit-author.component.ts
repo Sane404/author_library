@@ -92,10 +92,13 @@ export class EditAuthorComponent implements OnInit {
     if(doc_name.toLowerCase() != this.name.toLowerCase()){
       this.db.collection('authors').doc(this.name).delete(); 
     }
-    this.eventTrigger(form);
+    
     let newRoute = `${first_name.toLowerCase()}${last_name.toLowerCase()}`;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate(['details', newRoute]));
+    this.eventTrigger(form);
+    console.log('TRIGGERED');
+    
   }
   onChildClickFunction(e){
     e.stopPropagation();
