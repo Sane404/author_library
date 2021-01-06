@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateUrl } from '../shared/url-validator.service';
 import { MonthsconverterService } from '../shared/monthsconverter.service';
@@ -13,6 +13,7 @@ export class EditAuthorComponent implements OnInit {
   @Input() data;
   @Input() name;
   @Input() books;
+  @Output() submitTrigger = new EventEmitter();
   constructor(private converter : MonthsconverterService, private db:AngularFirestore, private router :Router) { }
   EditAuthorForm:FormGroup;
   max = new Date().toISOString().split("T")[0];
@@ -91,12 +92,16 @@ export class EditAuthorComponent implements OnInit {
     if(doc_name.toLowerCase() != this.name.toLowerCase()){
       this.db.collection('authors').doc(this.name).delete(); 
     }
+    this.eventTrigger(form);
     let newRoute = `${first_name.toLowerCase()}${last_name.toLowerCase()}`;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate(['details', newRoute]));
   }
   onChildClickFunction(e){
     e.stopPropagation();
+  }
+  eventTrigger(value) {
+    this.submitTrigger.emit(value);
   }
   get fname(){return this.EditAuthorForm.get('first_name');}
   get lname(){return this.EditAuthorForm.get('last_name');}
