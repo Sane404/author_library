@@ -1,0 +1,31 @@
+form{
+    width: 200px;
+    margin: 0 auto;
+    align-self: center;
+    background-color: white;
+    z-index: 1;
+    padding: 10px;
+}
+label{
+    display: flex;
+    flex-direction: column;
+}
+.submit{
+    background-color: var(--clr-main);
+    width: 100%;
+    color: white;
+    border:none;
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.error{
+    font-size: 12px;
+    color:red;
+    font-style: italic;
+}
+input[disabled]{
+    background-color: gray;
+    cursor: not-allowed
+}

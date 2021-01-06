@@ -1,0 +1,14 @@
+nav{
+    display: flex;
+    justify-content: flex-end;
+}
+nav a{
+    text-decoration: none;
+    color:black;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.active-link{
+    color: var(--clr-main) !important;
+}

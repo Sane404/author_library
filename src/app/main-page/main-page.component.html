@@ -1,0 +1,14 @@
+<div class="db" *ngIf='filteredDB'>
+    <input type="text" class='search_bar' (keyup) = 'filter($event)' placeholder="Search for author...">
+    <div class="author_card_wrap">
+    <div class="author_card" *ngFor = 'let item of filteredDB'>
+        <img [src] = "item.image_url == '' ? defaultUrl : item.image_url" [alt] = "item.image_url == '' ? 'Default_Image' : item.first_name + item.last_name ">
+        <div class="info_bar">
+            <h3>{{item.first_name}} {{item.last_name}}</h3>
+        <span>{{item.date_of_birth}} - {{item.date_of_death}}</span>
+        </div>
+        
+        <button (click) = 'go_to_details(item.first_name,item.last_name)'>Details</button>
+    </div>
+</div>
+</div>

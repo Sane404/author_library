@@ -1,0 +1,13 @@
+<form [formGroup]="editBook" (ngSubmit) = 'onSubmit(editBook)' (click) = 'onChildClickFunction($event)'>
+    <label>
+      Title:
+      <input type="text" formControlName="title" [style.border]="title.valid ? '2px solid green' : '2px solid red'">
+    </label>
+    <div class="error" *ngIf="title.invalid && (title.dirty || title.touched)">Letters only</div>
+    <label>
+      Genre:
+      <input type="text" formControlName="genre" [style.border]="genre.valid ? '2px solid green' : '2px solid red'">
+    </label>
+    <div class="error" *ngIf="genre.invalid && (genre.dirty || genre.touched)">Letters only</div>
+    <input type="submit" value='Add book' class="submit" [disabled] = 'editBook.status == "INVALID"'>
+</form>

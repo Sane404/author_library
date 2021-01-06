@@ -1,0 +1,83 @@
+.container{
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0px 10px 0px 10px;
+}
+.author_data{
+    width: 300px;
+    text-align: center;
+}
+.author_data img{
+    width: 100%;
+}
+.author_data button{
+    background-color: var(--clr-main);
+    width: 100%;
+    color: white;
+    border:none;
+    font-size: 22px;
+    padding: 5px;
+    cursor: pointer;
+}
+.books{
+    flex:1;
+    padding-left: 10px;
+}
+.books h2{
+    text-align: center;
+}
+.books_wrap{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.book{
+    display: flex;
+    
+}
+.book:not(:last-child){
+    margin-bottom: 5px;
+}
+.book_data span{
+    display: block;
+    font-size: 14px;
+    font-style: italic;
+}
+.book_buttons{
+    margin-left: auto;
+    display: flex;
+}
+.book_buttons button{
+    width: 90px;
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: var(--clr-main);
+    color: white;
+    border:none;
+}
+.add_book{
+    width: 90px;
+    cursor: pointer;
+    background-color: var(--clr-main);
+    color: white;
+    border:none;
+    cursor: pointer;
+}
+app-addbook , app-editbook , app-edit-author{
+    position: absolute;
+    display: flex;
+    top:0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(128, 128, 128, 0.39);
+}
+@media (max-width:800px){
+    .container{
+        flex-direction: column;
+    }
+    .author_data{
+        margin: 0 auto;
+    }
+}

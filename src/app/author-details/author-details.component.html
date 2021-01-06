@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="author_data" *ngIf='data'>
+        <img [src] = "data.image_url == '' ? defaultUrl : data.image_url" [alt] = "data.image_url == '' ? 'Default_Image' : data.first_name + data.last_name ">
+        <h3>{{data.first_name}} {{data.last_name}}</h3>
+        <span>{{data.date_of_birth}} - {{data.date_of_death}}</span>
+        <button (click)='show_edit_author_form()'>Edit Author Info</button>
+    </div>
+    <div class="books">
+        <h2>Bibliography</h2>
+        <div class="books_wrap">
+            
+                <div class="empty" *ngIf = 'empty'>Consider adding some books to this author</div>
+           
+            <div class="book" *ngFor='let item of books'>
+                <div class="book_data">
+                    <h4>{{item.title}}</h4>
+                    <span>{{item.genre}}</span>
+                </div>
+                <div class="book_buttons">
+                    <button *ngIf='item' (click)='show_edit_book_form(item)'>Edit Book</button>
+                    <button *ngIf='item' (click)='remove_book(item)'>Remove Book</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button (click)='show_add_form()' class ='add_book'>Add Book</button>
+    </div>
+    <app-addbook *ngIf='add_book_visible' [name]='name' (submitTrigger)='show_add_form($event)' (click) = 'show_add_form()' class="book_form"></app-addbook>
+    <app-editbook *ngIf='edit_book_visible && book_to_be_edited' [name]='name' [book]='book_to_be_edited'
+        (submitTrigger)='show_edit_book_form()' (click)='show_edit_book_form()'></app-editbook>
+    <app-edit-author *ngIf='edit_author_visible' [data]='data' (submitTrigger)='show_edit_author_form()' [name]='name'
+        [books]='books' (click)='show_edit_author_form()'></app-edit-author>
+</div>

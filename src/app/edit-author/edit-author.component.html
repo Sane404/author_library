@@ -1,0 +1,37 @@
+<form [formGroup]="EditAuthorForm" (ngSubmit) = 'onSubmit(EditAuthorForm)' (click) = 'onChildClickFunction($event)'>
+    <label>
+      First Name:
+      <input type="text" formControlName="first_name" [style.border]="fname.valid ? '2px solid green' : '2px solid red'">
+    </label>
+    <div class="error" *ngIf="fname.invalid && (fname.dirty || fname.touched)">Letters only</div>
+    <div class="error" *ngIf='fname.errors?.minlength'>Min 3 symbols</div>
+    <div class="error" *ngIf='fname.errors?.maxlength'>Max 20 symbols</div>
+    <label>
+      Last Name:
+      <input type="text" formControlName="last_name" [style.border]="lname.valid ? '2px solid green' : '2px solid red'">
+    </label>
+    <div class="error" *ngIf="lname.invalid && (lname.dirty || lname.touched)">Letters only</div>
+    <div class="error" *ngIf='lname.errors?.minlength'>Min 3 symbols</div>
+    <div class="error" *ngIf='lname.errors?.maxlength'>Max 20 symbols</div>
+    <label>
+      Date of birth:
+      <input type="date" formControlName="d_o_b" [style.border]="dob.valid ? '2px solid green' : '2px solid red'" [max] = 'max'>
+    </label>
+    <div class="error" *ngIf="dob.invalid && (dob.dirty || dob.touched)">Requiered</div>
+    <label class="alive">
+      Author is alive
+      <input type="checkbox" formControlName="alive">
+    </label>
+    <label *ngIf = '!isAlive'>
+      Date of death:
+      <input type="date" formControlName="d_o_d" [style.border]="dod.valid ? '2px solid green' : '2px solid red'" [max] = 'max'>
+    </label>
+    <div class="error" *ngIf="dod.invalid && (dod.dirty || dod.touched)">Requiered</div>
+    <label>
+      Image Url (not required)
+      <input type="text" formControlName="url" placeholder=".jpg format only">
+    </label>
+    <div class="error" *ngIf="url.invalid && (url.dirty || url.touched)">Use following format : "https://example.jpg" or "http://example.jpg"</div>
+    <input type="submit" value="Edit" [disabled] = 'EditAuthorForm.status == "INVALID"' class="submit">
+</form>
+
